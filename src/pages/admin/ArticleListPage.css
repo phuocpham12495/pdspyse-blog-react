@@ -1,0 +1,96 @@
+.article-list-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+}
+
+.article-list-page__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+}
+
+.article-list-page__count {
+    font-size: var(--fs-sm);
+    color: var(--clr-text-muted);
+}
+
+.article-list-page__empty {
+    text-align: center;
+    padding: var(--sp-16) 0;
+    color: var(--clr-text-muted);
+}
+
+.article-list-page__table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    background: var(--clr-surface);
+}
+
+.article-list-page__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.article-list-page__table th {
+    text-align: left;
+    padding: var(--sp-3) var(--sp-4);
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-muted);
+    background: var(--clr-bg-alt);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.article-list-page__table td {
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--clr-border);
+    font-size: var(--fs-sm);
+    vertical-align: middle;
+}
+
+.article-list-page__table tr:last-child td {
+    border-bottom: none;
+}
+
+.article-list-page__table tr:hover td {
+    background: var(--clr-surface-hover);
+}
+
+.article-list-page__article-cell {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+}
+
+.article-list-page__thumb {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.article-list-page__article-title {
+    font-weight: var(--fw-medium);
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article-list-page__date {
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+}
+
+.article-list-page__actions {
+    display: flex;
+    gap: var(--sp-1);
+}

@@ -1,0 +1,110 @@
+.dashboard__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-3xl);
+    margin-bottom: var(--sp-1);
+}
+
+.dashboard__subtitle {
+    color: var(--clr-text-muted);
+    font-size: var(--fs-sm);
+    margin-bottom: var(--sp-8);
+}
+
+.dashboard__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
+}
+
+.dashboard__stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-5) var(--sp-6);
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-base);
+}
+
+.dashboard__stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.dashboard__stat-icon {
+    font-size: 2rem;
+}
+
+.dashboard__stat-value {
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+}
+
+.dashboard__stat-label {
+    font-size: var(--fs-xs);
+    color: var(--clr-text-muted);
+}
+
+.dashboard__actions {
+    display: flex;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--sp-10);
+}
+
+.dashboard__section-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    margin-bottom: var(--sp-4);
+}
+
+.dashboard__recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+}
+
+.dashboard__recent-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    transition: background var(--transition-fast);
+}
+
+.dashboard__recent-item:hover {
+    background: var(--clr-surface-hover);
+}
+
+.dashboard__recent-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.dashboard__recent-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dashboard__recent-title {
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard__recent-date {
+    font-size: var(--fs-xs);
+    color: var(--clr-text-light);
+}
