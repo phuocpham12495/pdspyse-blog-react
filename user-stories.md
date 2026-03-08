@@ -3,8 +3,19 @@
 
 **Acceptance Criteria:**
 - The homepage displays a paginated list of articles.
-- Each article entry includes a thumbnail, title, and category.
+- Each article entry includes a thumbnail, title, category, and view count.
 - I do not need to log in to see the article list.
+
+---
+
+## [User] switch article list view mode
+**Benefit:** I can choose a layout that suits my browsing preference.
+
+**Acceptance Criteria:**
+- A view toggle is visible on the homepage with 5 layout options: Grid, Classic List, Timeline, Magazine, and Masonry.
+- Clicking a layout button immediately switches the article list to that layout.
+- The active layout is visually highlighted.
+- All layouts display article thumbnail, title, category, date, and view count.
 
 ---
 
@@ -13,7 +24,8 @@
 
 **Acceptance Criteria:**
 - Clicking an article from the list navigates me to its detail page.
-- The detail page displays the article's title, full content, thumbnail, and publication date.
+- The detail page displays the article's title, full content, thumbnail, publication date, and view count.
+- The article's view count is incremented automatically when the page loads.
 - I do not need to log in to view article details.
 
 ---

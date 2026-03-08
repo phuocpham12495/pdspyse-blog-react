@@ -65,6 +65,8 @@ const articleTitles = [
 const slugify = (text: string): string =>
     text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
+const viewCounts = [1243, 856, 3421, 672, 2105, 498, 1876, 3012, 945, 1567, 2890, 734];
+
 export const mockArticles: Article[] = articleTitles.map((title, i) => ({
     id: `article-${i + 1}`,
     title,
@@ -74,6 +76,7 @@ export const mockArticles: Article[] = articleTitles.map((title, i) => ({
     category_id: mockCategories[i % mockCategories.length].id,
     author_id: 'admin-1',
     is_published: true,
+    view_count: viewCounts[i % viewCounts.length],
     created_at: new Date(2026, 0, i + 1).toISOString(),
     updated_at: new Date(2026, 0, i + 1).toISOString(),
     category: mockCategories[i % mockCategories.length],

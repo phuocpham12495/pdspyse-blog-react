@@ -14,6 +14,7 @@ export interface Article {
     category_id: string;
     author_id: string;
     is_published: boolean;
+    view_count?: number;
     created_at: string;
     updated_at: string;
     /* Joined fields */

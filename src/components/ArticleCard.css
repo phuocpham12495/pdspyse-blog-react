@@ -1,3 +1,6 @@
+/* ============================
+   ArticleCard – Base Styles
+   ============================ */
 .article-card {
     display: flex;
     flex-direction: column;
@@ -58,8 +61,186 @@
     color: var(--clr-primary);
 }
 
+.article-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-top: auto;
+}
+
 .article-card__date {
     font-size: var(--fs-xs);
     color: var(--clr-text-muted);
-    margin-top: auto;
+}
+
+.article-card__views {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    font-size: var(--fs-xs);
+    color: var(--clr-text-muted);
+}
+
+.article-card__views-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* ============================
+   Classic List View
+   ============================ */
+.article-card--classic {
+    flex-direction: row;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.article-card--classic .article-card__img-wrap {
+    width: 280px;
+    min-width: 280px;
+    aspect-ratio: auto;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+    height: auto;
+}
+
+.article-card--classic .article-card__img {
+    height: 100%;
+    min-height: 180px;
+}
+
+.article-card--classic .article-card__body {
+    padding: var(--sp-5) var(--sp-6);
+    justify-content: center;
+}
+
+.article-card--classic .article-card__title {
+    font-size: var(--fs-xl);
+    -webkit-line-clamp: 3;
+}
+
+@media (max-width: 640px) {
+    .article-card--classic {
+        flex-direction: column;
+    }
+
+    .article-card--classic .article-card__img-wrap {
+        width: 100%;
+        min-width: unset;
+        aspect-ratio: 16 / 10;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+}
+
+/* ============================
+   Timeline View
+   ============================ */
+.article-card--timeline {
+    position: relative;
+    padding-left: var(--sp-10);
+    border-radius: var(--radius-xl);
+}
+
+.article-card--timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--clr-primary-light), var(--clr-accent-light));
+}
+
+.article-card--timeline::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: var(--sp-6);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+    box-shadow: 0 0 0 4px var(--clr-bg), 0 0 12px var(--clr-primary-glow);
+    z-index: 1;
+}
+
+.article-card--timeline .article-card__img-wrap {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* ============================
+   Magazine Featured
+   ============================ */
+.article-card--featured.article-card--magazine {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    min-height: 320px;
+}
+
+.article-card--featured.article-card--magazine .article-card__img-wrap {
+    width: 55%;
+    min-width: 55%;
+    aspect-ratio: auto;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+
+.article-card--featured.article-card--magazine .article-card__img {
+    height: 100%;
+}
+
+.article-card--featured.article-card--magazine .article-card__body {
+    padding: var(--sp-8);
+    justify-content: center;
+}
+
+.article-card--featured.article-card--magazine .article-card__title {
+    font-size: var(--fs-2xl);
+    -webkit-line-clamp: 3;
+    margin-bottom: var(--sp-4);
+}
+
+@media (max-width: 768px) {
+    .article-card--featured.article-card--magazine {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .article-card--featured.article-card--magazine .article-card__img-wrap {
+        width: 100%;
+        min-width: unset;
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+}
+
+/* ============================
+   Masonry View
+   ============================ */
+.article-card--masonry {
+    break-inside: avoid;
+    margin-bottom: var(--sp-6);
+}
+
+.article-card--masonry .article-card__img-wrap {
+    aspect-ratio: auto;
+}
+
+.article-card--masonry .article-card__img {
+    height: auto;
+    max-height: 300px;
+}
+
+/* Alternate aspect ratios for visual variety */
+.article-card--masonry:nth-child(3n+1) .article-card__img {
+    max-height: 220px;
+}
+
+.article-card--masonry:nth-child(3n+2) .article-card__img {
+    max-height: 300px;
+}
+
+.article-card--masonry:nth-child(3n) .article-card__img {
+    max-height: 260px;
 }

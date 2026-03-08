@@ -60,13 +60,24 @@
     left: -40px;
 }
 
-/* Filters */
-.home-page__filters {
+/* ============================
+   Filters
+   ============================ */
+.home-page__filters.container {
     display: flex;
     flex-direction: column;
     gap: var(--sp-4);
-    padding-top: var(--sp-8);
-    padding-bottom: var(--sp-6);
+    margin-top: var(--sp-6);
+    margin-bottom: var(--sp-5);
+    padding-left: var(--sp-5);
+    padding-right: var(--sp-5);
+}
+
+.home-page__filters-right {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
 }
 
 @media (min-width: 768px) {
@@ -78,27 +89,106 @@
     }
 }
 
-/* Grid */
+/* ============================
+   Content Section (margin)
+   ============================ */
+.home-page__content.container {
+    margin-top: var(--sp-3);
+    margin-bottom: var(--sp-10);
+    padding-left: var(--sp-5);
+    padding-right: var(--sp-5);
+}
+
+/* ============================
+   Grid View (default)
+   ============================ */
 .article-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--sp-6);
+    gap: var(--sp-8);
     animation: fadeIn var(--transition-base) ease;
 }
 
+.article-grid--grid {
+    /* default grid view */
+}
+
 @media (min-width: 640px) {
-    .article-grid {
+    .article-grid--grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
-    .article-grid {
+    .article-grid--grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Empty */
+/* ============================
+   Classic List View
+   ============================ */
+.article-grid--classic {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+}
+
+/* ============================
+   Timeline View
+   ============================ */
+.article-grid--timeline {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+/* ============================
+   Magazine View
+   ============================ */
+.article-grid--magazine {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+}
+
+@media (min-width: 640px) {
+    .article-grid--magazine {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .article-grid--magazine {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============================
+   Masonry View
+   ============================ */
+.article-grid--masonry {
+    display: block;
+    columns: 1;
+    column-gap: var(--sp-6);
+}
+
+@media (min-width: 640px) {
+    .article-grid--masonry {
+        columns: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .article-grid--masonry {
+        columns: 3;
+    }
+}
+
+/* ============================
+   Empty State
+   ============================ */
 .home-page__empty {
     text-align: center;
     padding: var(--sp-16) 0;
@@ -122,6 +212,9 @@
     font-size: var(--fs-sm);
 }
 
+/* ============================
+   Responsive
+   ============================ */
 @media (max-width: 640px) {
     .hero__title {
         font-size: var(--fs-3xl);

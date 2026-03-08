@@ -40,14 +40,15 @@ App
 │   ├── / → HomePage
 │   │   ├── Hero Section
 │   │   ├── SearchBar         ← Debounced input (350ms)
+│   │   ├── ViewToggle        ← Layout switcher (5 modes)
 │   │   ├── CategoryFilter    ← Tag buttons
-│   │   ├── ArticleCard[]     ← Grid of cards
+│   │   ├── ArticleCard[]     ← Grid of cards (viewMode prop)
 │   │   └── Pagination        ← Prev/Next + page numbers
 │   │
 │   ├── /article/:slug → ArticleDetailPage
 │   │   ├── Banner Image
 │   │   ├── Back Link
-│   │   ├── Article Header (badge, title, date)
+│   │   ├── Article Header (badge, title, date, view count)
 │   │   └── Article Content (dangerouslySetInnerHTML)
 │   │
 │   ├── /login → LoginPage    ← react-hook-form
@@ -102,6 +103,7 @@ const [search, setSearch] = useState('');          // Search keyword
 const [selectedCategory, setSelectedCategory] = useState(null); // Filter
 const [page, setPage] = useState(1);              // Pagination
 const [loading, setLoading] = useState(true);      // Loading indicator
+const [viewMode, setViewMode] = useState('grid');  // Layout: grid|classic|timeline|magazine|masonry
 
 // useCallback memoize fetchArticles → chỉ re-create khi dependencies thay đổi
 const fetchArticles = useCallback(async () => {
@@ -240,4 +242,24 @@ const [editName, setEditName] = useState('');
   <span>{cat.name}</span>
 )}
 // Enter key saves, Escape cancels → keyboard-friendly UX
+```
+
+### Pattern 8: View Mode Toggle (HomePage + ViewToggle + ArticleCard)
+```tsx
+// ViewToggle emits view mode changes
+// HomePage stores viewMode state and passes to grid container + ArticleCard
+<ViewToggle activeView={viewMode} onViewChange={setViewMode} />
+
+// Dynamic grid class based on viewMode
+const gridClassName = `article-grid article-grid--${viewMode}`;
+
+// ArticleCard receives viewMode prop for layout-specific CSS
+<ArticleCard article={article} viewMode={viewMode} featured={viewMode === 'magazine' && index === 0} />
+
+// CSS handles all layout variations:
+// .article-grid--grid     → 3-column grid
+// .article-grid--classic  → single column, horizontal cards
+// .article-grid--timeline → single column, left timeline line
+// .article-grid--magazine → hero card + smaller grid
+// .article-grid--masonry  → CSS columns
 ```

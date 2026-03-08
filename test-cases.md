@@ -8,14 +8,14 @@
 
 ---
 
-## [TC-002] Verify each article entry includes thumbnail, title, and category
+## [TC-002] Verify each article entry includes thumbnail, title, category, and view count
 **Preconditions:** Articles with thumbnails, titles, and categories exist in the database.
 
 **Steps:**
 1. Open the application homepage.
 2. Observe the displayed article entries.
 
-**Expected Result:** Each article entry clearly shows a thumbnail image, the article title, and its associated category.
+**Expected Result:** Each article entry clearly shows a thumbnail image, the article title, its associated category, and a view count with an eye icon.
 
 ---
 
@@ -47,7 +47,7 @@
 1. Navigate to an article's detail page (e.g., by clicking from the homepage).
 2. Observe the content of the page.
 
-**Expected Result:** The page displays the full article content, its title, the associated thumbnail, and the publication date.
+**Expected Result:** The page displays the full article content, its title, the associated thumbnail, the publication date, and the view count.
 
 ---
 
@@ -649,3 +649,96 @@
 3. Attempt to access the same article's detail page (e.g., via a direct link or by navigating from the cached homepage list).
 
 **Expected Result:** The article's full content, title, and thumbnail are displayed even without an internet connection, demonstrating successful caching of specific content.
+
+---
+
+## [TC-056] Verify view toggle is displayed on homepage
+**Preconditions:** None.
+
+**Steps:**
+1. Open the application homepage.
+
+**Expected Result:** A view toggle bar with 5 icon buttons (Grid, Classic List, Timeline, Magazine, Masonry) is visible in the filters area. The Grid button is active by default.
+
+---
+
+## [TC-057] Switch to Classic List view mode
+**Preconditions:** Homepage is open with articles loaded.
+
+**Steps:**
+1. Click the Classic List button (☰) in the view toggle.
+
+**Expected Result:** Articles are displayed in a single-column horizontal layout with the image on the left and text on the right. The Classic List button is highlighted as active.
+
+---
+
+## [TC-058] Switch to Timeline view mode
+**Preconditions:** Homepage is open with articles loaded.
+
+**Steps:**
+1. Click the Timeline button (⏱) in the view toggle.
+
+**Expected Result:** Articles are displayed in a single-column layout with a left timeline line and gradient dot indicators. The Timeline button is highlighted as active.
+
+---
+
+## [TC-059] Switch to Magazine view mode
+**Preconditions:** Homepage is open with articles loaded.
+
+**Steps:**
+1. Click the Magazine button (📰) in the view toggle.
+
+**Expected Result:** The first article is displayed as a large featured hero card spanning the full width, with remaining articles in a smaller grid below. The Magazine button is highlighted as active.
+
+---
+
+## [TC-060] Switch to Masonry view mode
+**Preconditions:** Homepage is open with articles loaded.
+
+**Steps:**
+1. Click the Masonry button (▦) in the view toggle.
+
+**Expected Result:** Articles are displayed in a staggered column layout with varying card heights. The Masonry button is highlighted as active.
+
+---
+
+## [TC-061] Switch back to Grid view mode
+**Preconditions:** Homepage is open in a non-Grid view mode.
+
+**Steps:**
+1. Click the Grid button (⊞) in the view toggle.
+
+**Expected Result:** Articles return to the default 3-column card grid layout. The Grid button is highlighted as active.
+
+---
+
+## [TC-062] Verify view count is displayed on article cards
+**Preconditions:** Articles exist in the database.
+
+**Steps:**
+1. Open the application homepage.
+2. Observe the article cards.
+
+**Expected Result:** Each article card displays a view count with an eye icon (e.g., "1.2k" or "856") next to the date.
+
+---
+
+## [TC-063] Verify view count is displayed on article detail page
+**Preconditions:** An article exists in the database.
+
+**Steps:**
+1. Navigate to an article's detail page.
+
+**Expected Result:** The article detail page shows the view count in a styled pill badge with an eye icon in the header area, alongside the publication date.
+
+---
+
+## [TC-064] Verify view count increments on article detail page load
+**Preconditions:** An article exists with a known view count.
+
+**Steps:**
+1. Note the current view count of an article from the homepage.
+2. Navigate to that article's detail page.
+3. Go back to the homepage and observe the view count.
+
+**Expected Result:** The article's view count has incremented by 1 after visiting its detail page.

@@ -57,9 +57,20 @@ CREATE TABLE articles (
   category_id UUID REFERENCES categories(id) ON DELETE SET NULL,
   author_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
   is_published BOOLEAN DEFAULT TRUE,
+  view_count INTEGER DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- ---- View Count Increment RPC ----
+CREATE OR REPLACE FUNCTION increment_view_count(article_id UUID)
+RETURNS VOID AS $$
+BEGIN
+  UPDATE articles
+  SET view_count = view_count + 1
+  WHERE id = article_id;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- ---- Row Level Security ----
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;

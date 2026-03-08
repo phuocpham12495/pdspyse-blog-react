@@ -40,13 +40,15 @@ The application adopts a client-server architecture. The frontend is a Single-Pa
 
 *   **Homepage:**
     *   Displays a paginated list of articles.
-    *   Each article card includes a thumbnail, title, and category tag.
+    *   Each article card includes a thumbnail, title, category tag, and view count.
     *   Search bar for keywords (title, content).
     *   Category filter (dropdown or tag cloud).
+    *   View mode toggle (Grid, Classic List, Timeline, Magazine Layout, Masonry).
     *   Responsive layout for various screen sizes.
 *   **Article Detail Page:**
-    *   Displays full article content, title, thumbnail, author (optional), and publication date.
+    *   Displays full article content, title, thumbnail, author (optional), publication date, and view count.
     *   Uses a rich text renderer for article content.
+    *   Automatically increments view count on page load.
 *   **Navigation:**
     *   Simple header with blog title and potentially a link to Admin login (if applicable for anonymous users).
 
@@ -117,8 +119,13 @@ The application adopts a client-server architecture. The frontend is a Single-Pa
     *   `category_id` (UUID, FK to `categories.id`)
     *   `author_id` (UUID, FK to `profiles.id`)
     *   `is_published` (Boolean, default TRUE)
+    *   `view_count` (Integer, default 0)
     *   `created_at` (Timestamp with timezone, default NOW())
     *   `updated_at` (Timestamp with timezone, default NOW())
+
+*   **`increment_view_count` RPC Function:**
+    *   Atomically increments the `view_count` column for a given `article_id`.
+    *   Called from the frontend when a user views an article detail page.
 
 ### 4.3. Supabase Configuration & Policies
 

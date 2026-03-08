@@ -119,6 +119,21 @@ updates: Partial<{
 
 ---
 
+### `incrementViewCount(articleId)`
+
+| Property | Value |
+|---|---|
+| **Method** | Supabase `RPC` (`increment_view_count`) |
+| **Table** | `articles` |
+| **Auth Required** | ❌ No |
+
+**Parameters:** `articleId: string` (Article UUID)
+**Response:** `void`
+
+> **Lưu ý:** Atomically increments `view_count` by 1. Falls back to in-memory increment in mock mode. Errors are silently ignored if the RPC doesn't exist yet.
+
+---
+
 ## 2. Category Service (`src/services/categoryService.ts`)
 
 ### `getCategories()`
@@ -254,6 +269,7 @@ interface Article {
   category_id: string;     // FK → categories.id
   author_id: string;       // FK → profiles.id
   is_published: boolean;
+  view_count?: number;     // Defaults to 0, optional for backward compat
   created_at: string;
   updated_at: string;
   category?: Category;     // Joined field

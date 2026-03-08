@@ -111,9 +111,10 @@ pdspyse-blog-react/
 │   ├── components/          # Shared UI components
 │   │   ├── Header.tsx       # Glassmorphism navigation bar
 │   │   ├── Footer.tsx       # Site footer
-│   │   ├── ArticleCard.tsx  # Blog card with hover effects
+│   │   ├── ArticleCard.tsx  # Blog card with hover effects & multiple layout modes
 │   │   ├── SearchBar.tsx    # Debounced search input
 │   │   ├── CategoryFilter.tsx # Tag cloud filter
+│   │   ├── ViewToggle.tsx   # Layout switcher (Grid/Classic/Timeline/Magazine/Masonry)
 │   │   ├── Pagination.tsx   # Page navigation
 │   │   ├── ConfirmDialog.tsx # Delete confirmation modal
 │   │   ├── LoadingSpinner.tsx # Multi-ring spinner
@@ -124,8 +125,8 @@ pdspyse-blog-react/
 │   │   ├── supabase.ts     # Supabase client initialization
 │   │   └── mockData.ts     # Mock articles & categories
 │   ├── pages/
-│   │   ├── HomePage.tsx     # Public article listing
-│   │   ├── ArticleDetailPage.tsx # Full article view
+│   │   ├── HomePage.tsx     # Public article listing with switchable view modes
+│   │   ├── ArticleDetailPage.tsx # Full article view with view counter
 │   │   ├── LoginPage.tsx    # Admin login
 │   │   ├── RegisterPage.tsx # Admin registration
 │   │   └── admin/
@@ -137,7 +138,7 @@ pdspyse-blog-react/
 │   │       ├── CategoryListPage.tsx # Category CRUD (inline add/edit/delete)
 │   │       └── ProfilePage.tsx     # Profile settings
 │   ├── services/
-│   │   ├── articleService.ts  # Article CRUD (with draft/publish support)
+│   │   ├── articleService.ts  # Article CRUD (with draft/publish support & view count)
 │   │   ├── categoryService.ts # Category CRUD (get, create, update, delete)
 │   │   ├── storageService.ts  # File upload operations
 │   │   └── profileService.ts  # Profile operations

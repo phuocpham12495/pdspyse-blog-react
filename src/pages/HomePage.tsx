@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import ArticleCard from '../components/ArticleCard';
 import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
+import ViewToggle from '../components/ViewToggle';
+import type { ViewMode } from '../components/ViewToggle';
 import Pagination from '../components/Pagination';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { getArticles } from '../services/articleService';
@@ -17,6 +19,7 @@ export default function HomePage() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
+    const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
     const fetchArticles = useCallback(async () => {
         setLoading(true);
@@ -49,6 +52,8 @@ export default function HomePage() {
         setPage(1);
     };
 
+    const gridClassName = `article-grid article-grid--${viewMode}`;
+
     return (
         <main className="home-page">
             {/* Hero */}
@@ -65,7 +70,10 @@ export default function HomePage() {
             {/* Filters */}
             <section className="home-page__filters container">
                 <SearchBar value={search} onChange={handleSearch} />
-                <CategoryFilter categories={categories} selected={selectedCategory} onSelect={handleCategorySelect} />
+                <div className="home-page__filters-right">
+                    <ViewToggle activeView={viewMode} onViewChange={setViewMode} />
+                    <CategoryFilter categories={categories} selected={selectedCategory} onSelect={handleCategorySelect} />
+                </div>
             </section>
 
             {/* Article Grid */}
@@ -80,9 +88,14 @@ export default function HomePage() {
                     </div>
                 ) : (
                     <>
-                        <div className="article-grid">
-                            {articles.map((article) => (
-                                <ArticleCard key={article.id} article={article} />
+                        <div className={gridClassName}>
+                            {articles.map((article, index) => (
+                                <ArticleCard
+                                    key={article.id}
+                                    article={article}
+                                    viewMode={viewMode}
+                                    featured={viewMode === 'magazine' && index === 0}
+                                />
                             ))}
                         </div>
                         <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />

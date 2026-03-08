@@ -60,6 +60,21 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     return data as Article;
 }
 
+export async function incrementViewCount(articleId: string): Promise<void> {
+    if (!isSupabaseConfigured()) {
+        // Mock mode: increment in-memory
+        const article = mockArticles.find((a) => a.id === articleId);
+        if (article) article.view_count = (article.view_count ?? 0) + 1;
+        return;
+    }
+
+    try {
+        await supabase.rpc('increment_view_count', { article_id: articleId });
+    } catch {
+        // RPC may not exist yet — silently ignore
+    }
+}
+
 export async function getAllArticles(): Promise<Article[]> {
     if (!isSupabaseConfigured()) {
         return mockArticles;
