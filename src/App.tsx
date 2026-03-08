@@ -16,6 +16,7 @@ import ArticleListPage from './pages/admin/ArticleListPage';
 import CreateArticlePage from './pages/admin/CreateArticlePage';
 import EditArticlePage from './pages/admin/EditArticlePage';
 import ProfilePage from './pages/admin/ProfilePage';
+import CategoryListPage from './pages/admin/CategoryListPage';
 
 export default function App() {
     return (
@@ -42,6 +43,7 @@ export default function App() {
                     <Route path="articles" element={<ArticleListPage />} />
                     <Route path="articles/create" element={<CreateArticlePage />} />
                     <Route path="articles/edit/:id" element={<EditArticlePage />} />
+                    <Route path="categories" element={<CategoryListPage />} />
                     <Route path="profile" element={<ProfilePage />} />
                 </Route>
             </Routes>

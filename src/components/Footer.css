@@ -26,20 +26,6 @@
     margin-top: var(--sp-1);
 }
 
-.footer__links {
-    display: flex;
-    gap: var(--sp-6);
-}
-
-.footer__links a {
-    font-size: var(--fs-sm);
-    color: var(--clr-text-muted);
-    transition: color var(--transition-fast);
-}
-
-.footer__links a:hover {
-    color: var(--clr-primary);
-}
 
 .footer__copy {
     font-size: var(--fs-xs);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllArticles, deleteArticle } from '../../services/articleService';
+import { getAllArticles, deleteArticle, updateArticle } from '../../services/articleService';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import type { Article } from '../../types';
@@ -38,6 +38,16 @@ export default function ArticleListPage() {
             showToast('error', 'Failed to delete article.');
         }
         setDeleteTarget(null);
+    };
+
+    const handleTogglePublish = async (article: Article) => {
+        try {
+            const updated = await updateArticle(article.id, { is_published: !article.is_published });
+            setArticles((prev) => prev.map((a) => (a.id === article.id ? updated : a)));
+            showToast('success', updated.is_published ? 'Article published!' : 'Article moved to draft.');
+        } catch {
+            showToast('error', 'Failed to update article status.');
+        }
     };
 
     const showToast = (type: 'success' | 'error', message: string) => {
@@ -94,6 +104,13 @@ export default function ArticleListPage() {
                                     </td>
                                     <td>
                                         <div className="article-list-page__actions">
+                                            <button
+                                                className="btn btn-ghost btn-sm"
+                                                onClick={() => handleTogglePublish(article)}
+                                                title={article.is_published ? 'Move to draft' : 'Publish'}
+                                            >
+                                                {article.is_published ? '📋 Draft' : '🚀 Publish'}
+                                            </button>
                                             <Link to={`/admin/articles/edit/${article.id}`} className="btn btn-ghost btn-sm">✏️ Edit</Link>
                                             <button className="btn btn-ghost btn-sm" style={{ color: 'var(--clr-error)' }} onClick={() => setDeleteTarget(article)}>
                                                 🗑️ Delete

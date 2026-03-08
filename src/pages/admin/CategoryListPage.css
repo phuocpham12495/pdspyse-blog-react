@@ -1,0 +1,103 @@
+.category-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+}
+
+.category-page__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+}
+
+.category-page__count {
+    font-size: var(--fs-sm);
+    color: var(--clr-text-muted);
+}
+
+/* Add form */
+.category-page__add-form {
+    display: flex;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-6);
+}
+
+.category-page__add-form .input-field {
+    flex: 1;
+    max-width: 360px;
+}
+
+/* Table */
+.category-page__table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    background: var(--clr-surface);
+}
+
+.category-page__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.category-page__table th {
+    text-align: left;
+    padding: var(--sp-3) var(--sp-4);
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-muted);
+    background: var(--clr-bg-alt);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.category-page__table td {
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--clr-border);
+    font-size: var(--fs-sm);
+    vertical-align: middle;
+}
+
+.category-page__table tr:last-child td {
+    border-bottom: none;
+}
+
+.category-page__table tr:hover td {
+    background: var(--clr-surface-hover);
+}
+
+.category-page__slug {
+    color: var(--clr-text-muted);
+    font-family: monospace;
+    font-size: var(--fs-xs);
+}
+
+.category-page__edit-input {
+    padding: var(--sp-1) var(--sp-2);
+    border: 1px solid var(--clr-primary);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-sm);
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    width: 200px;
+}
+
+.category-page__actions {
+    display: flex;
+    gap: var(--sp-1);
+}
+
+.category-page__empty {
+    text-align: center;
+    padding: var(--sp-16) 0;
+    color: var(--clr-text-muted);
+}
+
+.category-page__date {
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+}

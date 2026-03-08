@@ -24,6 +24,7 @@ export default function EditArticlePage() {
     const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [isPublished, setIsPublished] = useState(true);
 
     const {
         register,
@@ -46,6 +47,7 @@ export default function EditArticlePage() {
                     setValue('content', article.content);
                     setValue('category_id', article.category_id);
                     if (article.thumbnail_url) setThumbnailPreview(article.thumbnail_url);
+                    setIsPublished(article.is_published);
                 }
             } catch {
                 setError('Failed to load article');
@@ -88,6 +90,7 @@ export default function EditArticlePage() {
                 title: data.title,
                 content: data.content,
                 category_id: data.category_id,
+                is_published: isPublished,
                 ...(thumbnailUrl && { thumbnail_url: thumbnailUrl }),
             });
 
@@ -185,6 +188,13 @@ export default function EditArticlePage() {
                 <div className="article-form__actions">
                     <button type="button" className="btn btn-secondary" onClick={() => navigate(-1)}>
                         Cancel
+                    </button>
+                    <button
+                        type="button"
+                        className={`btn ${isPublished ? 'btn-ghost' : 'btn-primary'} btn-lg`}
+                        onClick={() => setIsPublished(!isPublished)}
+                    >
+                        {isPublished ? '📋 Switch to Draft' : '🚀 Switch to Published'}
                     </button>
                     <button type="submit" className="btn btn-primary btn-lg" disabled={submitting}>
                         {submitting ? 'Saving...' : '💾 Save Changes'}

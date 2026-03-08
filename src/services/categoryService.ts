@@ -31,3 +31,25 @@ export async function createCategory(name: string): Promise<Category> {
     if (error) throw error;
     return data as Category;
 }
+
+export async function updateCategory(id: string, name: string): Promise<Category> {
+    const slug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+    const { data, error } = await supabase
+        .from('categories')
+        .update({ name, slug })
+        .eq('id', id)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as Category;
+}
+
+export async function deleteCategory(id: string): Promise<void> {
+    const { error } = await supabase.from('categories').delete().eq('id', id);
+    if (error) throw error;
+}

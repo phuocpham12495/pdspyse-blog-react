@@ -110,6 +110,32 @@ describe('AuthContext', () => {
 
 ---
 
+### 1.4 Category Service Tests
+```typescript
+// src/services/__tests__/categoryService.test.ts
+import { describe, it, expect } from 'vitest';
+import { getCategories } from '../categoryService';
+
+describe('categoryService', () => {
+  describe('getCategories (mock mode)', () => {
+    it('should return categories sorted by name', async () => {
+      const categories = await getCategories();
+      expect(categories.length).toBeGreaterThan(0);
+      const names = categories.map(c => c.name);
+      expect(names).toEqual([...names].sort());
+    });
+
+    it('should have unique slugs', async () => {
+      const categories = await getCategories();
+      const slugs = categories.map(c => c.slug);
+      expect(new Set(slugs).size).toBe(slugs.length);
+    });
+  });
+});
+```
+
+---
+
 ## 2. Integration Test Scenarios
 
 | ID | Kịch bản | Module liên quan | Mức ưu tiên |
@@ -122,6 +148,12 @@ describe('AuthContext', () => {
 | INT-006 | Upload thumbnail → Preview → Save → Display | Storage + Forms | P1 |
 | INT-007 | Update profile → Verify changes persist | Profile + Auth | P1 |
 | INT-008 | Protected route → Redirect unauthenticated user | ProtectedRoute + Router | P0 |
+| INT-009 | Create category → Verify in category list + article form | Category CRUD | P0 |
+| INT-010 | Edit category → Verify slug updates, name changes | Category CRUD | P1 |
+| INT-011 | Delete category → Confirm → Verify articles uncategorized | Category CRUD + Dialog | P1 |
+| INT-012 | Create article as draft → Verify NOT on homepage | Draft + Public | P0 |
+| INT-013 | Toggle article published → Verify appears on homepage | Draft + Public | P0 |
+| INT-014 | Toggle article to draft → Verify removed from homepage | Draft + Public | P0 |
 
 ---
 
@@ -152,17 +184,31 @@ describe('AuthContext', () => {
 ### Flow 3: Article CRUD (TC-022 → TC-036)
 ```
 1. Login as admin → Go to dashboard
-2. Click "Create New Article" → Fill form → Submit (TC-023)
-3. Verify article in admin list (TC-027)
-4. Open public homepage → Verify new article visible (TC-024)
-5. Edit article → Change title & content → Save (TC-028)
-6. Verify changes on public page (TC-031)
-7. Delete article → Confirm dialog → Delete (TC-033)
-8. Verify article removed from public page (TC-034)
-9. Cancel delete → Verify article persists (TC-035)
+2. Click "Create New Article" → Fill form → Click "Save as Draft" (TC-023)
+3. Verify article in admin list with "Draft" status (TC-027)
+4. Open public homepage → Verify draft NOT visible (NEW)
+5. Go to article list → Click "Publish" toggle → Verify status changes to Published
+6. Open public homepage → Verify article now visible (TC-024)
+7. Edit article → Change title & content → Click "Switch to Draft" → Save (TC-028)
+8. Verify article hidden from public page (NEW)
+9. Click "Switch to Published" → Save → Verify visible again (TC-031)
+10. Delete article → Confirm dialog → Delete (TC-033)
+11. Verify article removed from public page (TC-034)
+12. Cancel delete → Verify article persists (TC-035)
 ```
 
-### Flow 4: Responsive Design (TC-048 → TC-051)
+### Flow 4: Category CRUD
+```
+1. Login as admin → Go to /admin/categories
+2. Verify existing categories displayed in table
+3. Enter new category name → Click "Add" → Verify appears in table
+4. Click "Edit" on category → Change name → Press Enter → Verify updated
+5. Click "Delete" → Confirm dialog → Verify removed from table
+6. Go to Create Article → Verify new category appears in dropdown
+7. Delete category that has articles → Verify articles become "Uncategorized"
+```
+
+### Flow 5: Responsive Design (TC-048 → TC-051)
 ```
 1. Open homepage on desktop (1920px) → Verify 3-column grid
 2. Resize to tablet (768px) → Verify 2-column grid

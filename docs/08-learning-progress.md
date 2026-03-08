@@ -9,8 +9,8 @@
 {
   "project": "Pdspyse Blog React",
   "student_level": "Intermediate",
-  "completion_date": "2026-03-07",
-  "overall_progress": 85,
+  "completion_date": "2026-03-08",
+  "overall_progress": 88,
   "concepts_covered": [
     {
       "topic": "React Fundamentals",
@@ -73,7 +73,9 @@
         { "name": "Component-Driven Development", "practiced": true, "progress": 90 },
         { "name": "Protected Route Pattern", "practiced": true, "progress": 80 },
         { "name": "Mock Data Fallback Pattern", "practiced": true, "progress": 85 },
-        { "name": "Debounce Pattern", "practiced": true, "progress": 75 }
+        { "name": "Debounce Pattern", "practiced": true, "progress": 75 },
+        { "name": "Inline Edit Pattern (Category CRUD)", "practiced": true, "progress": 80 },
+        { "name": "State-Driven Form Modes (Draft/Publish)", "practiced": true, "progress": 85 }
       ]
     },
     {
@@ -132,7 +134,9 @@
     {
       "exercise": "Add article draft/publish workflow",
       "skills_practiced": ["State machine", "Conditional queries"],
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "status": "completed",
+      "completed_date": "2026-03-08"
     },
     {
       "exercise": "Write comprehensive unit tests with Vitest",
@@ -159,10 +163,10 @@
 
 | Category | Progress |
 |----------|----------|
-| React (Fundamentals + Advanced) | ⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 85% |
-| TypeScript | ⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜ 75% |
+| React (Fundamentals + Advanced) | ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜ 88% |
+| TypeScript | ⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 78% |
 | CSS & Design | ⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 82% |
-| Supabase/Backend | ⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜ 76% |
-| Architecture | ⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 83% |
-| DevOps & Tooling | ⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜ 77% |
-| **Overall** | **⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 80%** |
+| Supabase/Backend | ⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 80% |
+| Architecture | ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜ 87% |
+| DevOps & Tooling | ⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜ 77% |
+| **Overall** | **⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜ 82%** |

@@ -76,6 +76,7 @@ interface CreateArticleRequest {
   category_id: string;     // Required, UUID referencing categories.id
   thumbnail_url: string;   // URL from storage upload
   author_id: string;       // UUID from auth.users.id
+  is_published?: boolean;  // Optional, defaults to true. Set false to save as draft.
 }
 ```
 
@@ -99,6 +100,7 @@ updates: Partial<{
   content: string;
   category_id: string;
   thumbnail_url: string;
+  is_published: boolean;   // Toggle draft/published status
 }>
 ```
 
@@ -136,6 +138,33 @@ updates: Partial<{
 | **Method** | Supabase `INSERT` |
 | **Table** | `categories` |
 | **Auth Required** | ✅ Admin only |
+
+**Parameters:** `name: string` — Category name (slug auto-generated)
+**Response:** `Category`
+
+### `updateCategory(id, name)`
+
+| Property | Value |
+|---|---|
+| **Method** | Supabase `UPDATE` |
+| **Table** | `categories` |
+| **Auth Required** | ✅ Admin only |
+
+**Parameters:** `id: string` (Category UUID), `name: string` (new name, slug auto-regenerated)
+**Response:** `Category`
+
+### `deleteCategory(id)`
+
+| Property | Value |
+|---|---|
+| **Method** | Supabase `DELETE` |
+| **Table** | `categories` |
+| **Auth Required** | ✅ Admin only |
+
+**Parameters:** `id: string` (Category UUID)
+**Response:** `void`
+
+> **Lưu ý:** Xóa category sẽ set `category_id = NULL` trên articles thuộc category đó (ON DELETE SET NULL).
 
 ---
 

@@ -103,13 +103,38 @@
 
 ---
 
+## Bước 11: Thêm Category CRUD Admin Page
+**Thời gian:** 2026-03-08T10:59:00+07:00
+**Hành động:** Thêm `updateCategory()`, `deleteCategory()` vào `categoryService.ts`. Tạo `CategoryListPage.tsx` + `CategoryListPage.css`. Cập nhật route trong `App.tsx`, sidebar trong `AdminLayout.tsx`, và dashboard actions trong `DashboardPage.tsx`.
+**Quyết định:** Thiết kế inline edit (click edit → input field → save/cancel) thay vì separate edit page
+**Lý do:** Category chỉ có 1 field (name), không cần form riêng → inline edit UX tốt hơn
+
+---
+
+## Bước 12: Thêm Draft Article Support
+**Thời gian:** 2026-03-08T11:00:00+07:00
+**Hành động:** Cập nhật `createArticle()` và `updateArticle()` trong `articleService.ts` để chấp nhận `is_published` param. Thêm "Save as Draft" button vào `CreateArticlePage.tsx`. Thêm draft/publish toggle vào `EditArticlePage.tsx` và `ArticleListPage.tsx`.
+**Quyết định:** Sử dụng `publishMode` state cho create form, `isPublished` state cho edit form
+**Lý do:** DB schema đã có `is_published` column → chỉ cần expose tính năng ra UI mà không cần migration
+
+---
+
+## Bước 13: Xóa Footer Social Links
+**Thời gian:** 2026-03-08T11:01:00+07:00
+**Hành động:** Xóa `footer__links` div (GitHub, Twitter, Contact) khỏi `Footer.tsx`. Dọn dẹp CSS tương ứng trong `Footer.css`.
+**Quyết định:** Xóa hoàn toàn thay vì ẩn
+**Lý do:** Yêu cầu từ user, links không còn cần thiết
+
+---
+
 ## Tổng kết
 | Metric | Value |
 |--------|-------|
-| Tổng số files tạo mới | 33 files |
-| Tổng thời gian build | ~15 phút |
+| Tổng số files tạo mới | 35 files |
+| Tổng số files cập nhật | 9 files |
+| Tổng thời gian build | ~18 phút |
 | TypeScript errors | 0 |
 | Build time (production) | 1.97s |
-| Pages created | 8 pages |
+| Pages created | 9 pages |
 | Components created | 8 components |
-| Services created | 4 services |
+| Services created | 4 services (categoryService mở rộng CRUD) |

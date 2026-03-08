@@ -156,6 +156,39 @@
       ],
       "dependencies": ["F-004"],
       "risk": "low"
+    },
+    {
+      "id": "F-010",
+      "name": "Admin Category CRUD",
+      "priority": "P1",
+      "sprint": 3,
+      "status": "completed",
+      "tasks": [
+        "Category list admin page with table view",
+        "Inline add category form",
+        "Inline edit category (click → input → save)",
+        "Delete category with confirmation dialog",
+        "Sidebar navigation link",
+        "Dashboard quick action button"
+      ],
+      "dependencies": ["F-006", "F-002"],
+      "risk": "low"
+    },
+    {
+      "id": "F-011",
+      "name": "Draft Article Workflow",
+      "priority": "P1",
+      "sprint": 3,
+      "status": "completed",
+      "tasks": [
+        "Save as Draft button on create form",
+        "Draft/Publish toggle on edit form",
+        "Quick publish/unpublish toggle on article list",
+        "Draft articles hidden from public homepage",
+        "Status badge (Published/Draft) in admin list"
+      ],
+      "dependencies": ["F-003"],
+      "risk": "low"
     }
   ]
 }
@@ -169,6 +202,7 @@
 |--------|----------|----------|--------|
 | Sprint 1 | Week 1 | F-004, F-006, F-001, F-002, F-009 | ✅ Complete |
 | Sprint 2 | Week 2 | F-003, F-005, F-007, F-008 | ✅ Complete |
+| Sprint 3 | Week 3 | F-010, F-011 | ✅ Complete |
 
 ---
 
@@ -186,6 +220,9 @@ graph LR
     F002 --> F007[F-007 Profile]
     F005 --> F007
     F006 --> F001
+    F006 --> F010[F-010 Category CRUD]
+    F002 --> F010
+    F003 --> F011[F-011 Draft Workflow]
 ```
 
 ---

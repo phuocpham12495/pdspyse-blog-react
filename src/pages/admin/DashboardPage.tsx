@@ -52,6 +52,9 @@ export default function DashboardPage() {
                 <Link to="/admin/articles" className="btn btn-secondary btn-lg">
                     📋 Manage Articles
                 </Link>
+                <Link to="/admin/categories" className="btn btn-secondary btn-lg">
+                    🏷️ Manage Categories
+                </Link>
             </div>
 
             {articles.length > 0 && (

@@ -24,6 +24,7 @@ export default function CreateArticlePage() {
     const [fileError, setFileError] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState('');
+    const [publishMode, setPublishMode] = useState<'publish' | 'draft'>('publish');
 
     const {
         register,
@@ -76,6 +77,7 @@ export default function CreateArticlePage() {
                 category_id: data.category_id,
                 thumbnail_url: thumbnailUrl,
                 author_id: user?.id || '',
+                is_published: publishMode === 'publish',
             });
 
             navigate('/admin/articles');
@@ -164,8 +166,21 @@ export default function CreateArticlePage() {
                     <button type="button" className="btn btn-secondary" onClick={() => navigate(-1)}>
                         Cancel
                     </button>
-                    <button type="submit" className="btn btn-primary btn-lg" disabled={submitting}>
-                        {submitting ? 'Publishing...' : '🚀 Publish Article'}
+                    <button
+                        type="submit"
+                        className="btn btn-ghost btn-lg"
+                        disabled={submitting}
+                        onClick={() => setPublishMode('draft')}
+                    >
+                        {submitting && publishMode === 'draft' ? 'Saving...' : '📋 Save as Draft'}
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn btn-primary btn-lg"
+                        disabled={submitting}
+                        onClick={() => setPublishMode('publish')}
+                    >
+                        {submitting && publishMode === 'publish' ? 'Publishing...' : '🚀 Publish Article'}
                     </button>
                 </div>
             </form>

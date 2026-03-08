@@ -60,9 +60,10 @@ App
 │           ├── /admin/articles → ArticleListPage
 │           ├── /admin/articles/create → CreateArticlePage
 │           ├── /admin/articles/edit/:id → EditArticlePage
+│           ├── /admin/categories → CategoryListPage  ← NEW
 │           └── /admin/profile → ProfilePage
 │
-└── Footer
+└── Footer (no social links)
 ```
 
 ---
@@ -210,4 +211,33 @@ const reader = new FileReader();
 reader.onload = (e) => setPreview(e.target.result);
 reader.readAsDataURL(file);
 // Validation happens BEFORE preview → reject invalid files early
+```
+
+### Pattern 6: Draft/Publish Toggle (CreateArticlePage + EditArticlePage)
+```tsx
+// CreateArticlePage: two submit buttons, one state
+const [publishMode, setPublishMode] = useState<'publish' | 'draft'>('publish');
+
+// Both buttons are type="submit" → same form submission
+// onClick sets publishMode BEFORE form submit fires
+<button type="submit" onClick={() => setPublishMode('draft')}>Save as Draft</button>
+<button type="submit" onClick={() => setPublishMode('publish')}>Publish</button>
+
+// onSubmit reads publishMode to set is_published
+await createArticle({ ...data, is_published: publishMode === 'publish' });
+```
+
+### Pattern 7: Inline Edit (CategoryListPage)
+```tsx
+// State-driven inline editing:
+const [editingId, setEditingId] = useState<string | null>(null);
+const [editName, setEditName] = useState('');
+
+// In table row:
+{editingId === cat.id ? (
+  <input value={editName} onChange={...} onKeyDown={handleEnterSave} />
+) : (
+  <span>{cat.name}</span>
+)}
+// Enter key saves, Escape cancels → keyboard-friendly UX
 ```

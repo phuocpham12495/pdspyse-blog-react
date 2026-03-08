@@ -44,6 +44,10 @@ export default function AdminLayout() {
                         <span className="admin-sidebar__link-icon">➕</span>
                         New Article
                     </NavLink>
+                    <NavLink to="/admin/categories" className={({ isActive }) => `admin-sidebar__link ${isActive ? 'is-active' : ''}`} onClick={() => setSidebarOpen(false)}>
+                        <span className="admin-sidebar__link-icon">🏷️</span>
+                        Categories
+                    </NavLink>
                     <NavLink to="/admin/profile" className={({ isActive }) => `admin-sidebar__link ${isActive ? 'is-active' : ''}`} onClick={() => setSidebarOpen(false)}>
                         <span className="admin-sidebar__link-icon">👤</span>
                         Profile

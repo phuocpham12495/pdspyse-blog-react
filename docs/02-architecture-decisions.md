@@ -92,6 +92,28 @@
 
 ---
 
+## ADR-009: Category CRUD – Inline Edit Pattern
+
+| Tiêu chí | Quyết định |
+|----------|-----------|
+| **Mẫu thiết kế** | Inline Edit (Table Row) |
+| **Lựa chọn** | Click Edit → input field thay thế text → Save/Cancel |
+| **Các phương án khác** | Separate edit page, Modal dialog |
+| **Đánh đổi** | Inline edit chỉ phù hợp cho entity đơn giản (1 field). Nếu category mở rộng (thêm description, icon) thì cần refactor sang modal/page. Tuy nhiên, UX nhanh hơn vì không cần navigate/open dialog. |
+
+---
+
+## ADR-010: Draft Article Workflow
+
+| Tiêu chí | Quyết định |
+|----------|-----------|
+| **Mẫu thiết kế** | Binary State Toggle (Published/Draft) |
+| **Lựa chọn** | `is_published: boolean` trên articles table |
+| **Các phương án khác** | Status enum (draft/review/published/archived), Separate drafts table |
+| **Đánh đổi** | Boolean đơn giản, dễ query (`eq('is_published', true)`). Tuy nhiên, không hỗ trợ workflow phức tạp (review, schedule). Nếu cần multi-stage workflow, cần migrate sang status enum. DB schema đã có column → zero migration cost. |
+
+---
+
 ## Dependency Graph
 
 ```mermaid

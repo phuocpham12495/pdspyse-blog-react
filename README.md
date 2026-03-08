@@ -131,13 +131,14 @@ pdspyse-blog-react/
 │   │   └── admin/
 │   │       ├── AdminLayout.tsx     # Sidebar layout
 │   │       ├── DashboardPage.tsx   # Stats overview
-│   │       ├── ArticleListPage.tsx # Article management
-│   │       ├── CreateArticlePage.tsx # New article form
-│   │       ├── EditArticlePage.tsx   # Edit article form
+│   │       ├── ArticleListPage.tsx # Article management (publish/draft toggle)
+│   │       ├── CreateArticlePage.tsx # New article form (publish or save as draft)
+│   │       ├── EditArticlePage.tsx   # Edit article form (draft/publish toggle)
+│   │       ├── CategoryListPage.tsx # Category CRUD (inline add/edit/delete)
 │   │       └── ProfilePage.tsx     # Profile settings
 │   ├── services/
-│   │   ├── articleService.ts  # Article CRUD operations
-│   │   ├── categoryService.ts # Category operations
+│   │   ├── articleService.ts  # Article CRUD (with draft/publish support)
+│   │   ├── categoryService.ts # Category CRUD (get, create, update, delete)
 │   │   ├── storageService.ts  # File upload operations
 │   │   └── profileService.ts  # Profile operations
 │   ├── types/

@@ -95,6 +95,7 @@ export async function createArticle(article: {
     category_id: string;
     thumbnail_url: string;
     author_id: string;
+    is_published?: boolean;
 }): Promise<Article> {
     const slug = article.title
         .toLowerCase()
@@ -103,7 +104,7 @@ export async function createArticle(article: {
 
     const { data, error } = await supabase
         .from('articles')
-        .insert({ ...article, slug, is_published: true })
+        .insert({ ...article, slug, is_published: article.is_published ?? true })
         .select('*, category:categories(*)')
         .single();
 
@@ -118,6 +119,7 @@ export async function updateArticle(
         content: string;
         category_id: string;
         thumbnail_url: string;
+        is_published: boolean;
     }>
 ): Promise<Article> {
     const updateData: Record<string, unknown> = { ...updates, updated_at: new Date().toISOString() };
